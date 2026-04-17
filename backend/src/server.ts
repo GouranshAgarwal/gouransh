@@ -26,7 +26,7 @@ app.use(
   cors({
     origin: config.frontendUrl,
     credentials: true,
-    methods: ["GET", "POST", "OPTIONS"],
+    methods: ["*"],
     allowedHeaders: ["Content-Type"],
   })
 );
