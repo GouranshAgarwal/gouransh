@@ -88,8 +88,8 @@ export const projects: Project[] = [
   {
     id: 1,
     title: "Autonomous RL Navigation Sandbox",
-    year: "2026",
-    status: "live",
+    year: "2026 – Ongoing",
+    status: "wip",
     liveUrl: null,
     codeUrl: "https://github.com/GouranshAgarwal/Autonomous-Pathfinder-Robot-with-RL",
     description:
@@ -107,7 +107,7 @@ export const projects: Project[] = [
     id: 2,
     title: "BillFlow — PDF Processing & Optimization SaaS",
     year: "2026 – Ongoing",
-    status: "wip",
+    status: "live",
     liveUrl: "https://space-squeeze.vercel.app",
     codeUrl: null,
     description:
