@@ -11,11 +11,19 @@ import {
 import contactRoutes from "./routes/contact.js";
 import type { Response } from "express";
 import type { ApiResponse } from "./types.js";
+import dns from "dns";
 
+dns.setDefaultResultOrder("ipv4first");
 const app = express();
+
+app.set("trust proxy", true); // Trust first proxy for correct client IPs
 
 // Security middleware
 app.use(helmet());
+
+
+
+
 
 // Body parsing middleware
 app.use(express.json({ limit: "1mb" }));
