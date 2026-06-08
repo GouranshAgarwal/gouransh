@@ -15,11 +15,9 @@ export const config = {
 
   // Email
   email: {
-    host: process.env.EMAIL_HOST,
-    port: parseInt(process.env.EMAIL_PORT || "587", 10),
-    user: process.env.EMAIL_USER,
-    password: process.env.EMAIL_PASSWORD,
-    from: process.env.EMAIL_FROM,
+    apiKey: process.env.BREVO_API_KEY,
+    senderEmail: process.env.BREVO_SENDER_EMAIL || "gouranshagarwal97@gmail.com",
+    senderName: process.env.BREVO_SENDER_NAME || "Gouransh Agarwal",
   },
 
   // Rate Limiting
@@ -30,12 +28,8 @@ export const config = {
 };
 
 // Validate required environment variables
-const requiredVars = ["EMAIL_USER", "EMAIL_PASSWORD", "EMAIL_FROM"];
-if (!config.isDev) {
-  const missing = requiredVars.filter((v) => !process.env[v]);
-  if (missing.length > 0) {
-    console.warn(
-      `Warning: Missing environment variables: ${missing.join(", ")}`
-    );
+if (config.nodeEnv === "production") {
+  if (!config.email.apiKey) {
+    throw new Error("BREVO_API_KEY must be set in production");
   }
 }

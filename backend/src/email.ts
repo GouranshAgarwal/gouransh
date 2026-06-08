@@ -1,51 +1,72 @@
-import nodemailer from "nodemailer";
 import { config } from "./config.js";
 import type { EmailOptions } from "./types.js";
 
-let transporter: nodemailer.Transporter | null = null;
+const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
 
 export const initializeEmailService = async () => {
-  if (!config.email.user || !config.email.password) {
+  if (!config.email.apiKey) {
     console.warn(
-      "Email service not configured. Contact form emails will not be sent."
+      "Brevo API key not configured. Contact form emails will not be sent."
     );
     return null;
   }
 
   try {
-    transporter = nodemailer.createTransport({
-      host: config.email.host,
-      port: config.email.port,
-      secure: config.email.port === 465,
-      auth: {
-        user: config.email.user,
-        pass: config.email.password,
+    // Test API key by making a simple request
+    const response = await fetch("https://api.brevo.com/v3/account", {
+      method: "GET",
+      headers: {
+        "api-key": config.email.apiKey,
       },
     });
 
-    // Verify connection
-    await transporter.verify();
-    console.log("✓ Email service initialized");
-    return transporter;
+    if (response.ok) {
+      console.log("✓ Brevo email service initialized");
+      return true;
+    } else {
+      console.error("✗ Brevo API key validation failed:", response.statusText);
+      return null;
+    }
   } catch (error) {
-    console.error("✗ Email service initialization failed:", error);
+    console.error("✗ Brevo email service initialization failed:", error);
     return null;
   }
 };
 
 export const sendEmail = async (options: EmailOptions): Promise<boolean> => {
-  if (!transporter) {
-    console.warn("Email service not available");
+  if (!config.email.apiKey) {
+    console.warn("Brevo API key not available");
     return false;
   }
 
   try {
-    await transporter.sendMail({
-      from: config.email.from,
-      to: options.to,
-      subject: options.subject,
-      html: options.html,
+    const response = await fetch(BREVO_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": config.email.apiKey,
+      },
+      body: JSON.stringify({
+        sender: {
+          name: config.email.senderName,
+          email: config.email.senderEmail,
+        },
+        to: [
+          {
+            email: options.to,
+          },
+        ],
+        subject: options.subject,
+        htmlContent: options.html,
+      }),
     });
+
+    if (!response.ok) {
+      const error = await response.json();
+      console.error("Error sending email via Brevo:", error);
+      return false;
+    }
+
     return true;
   } catch (error) {
     console.error("Error sending email:", error);
