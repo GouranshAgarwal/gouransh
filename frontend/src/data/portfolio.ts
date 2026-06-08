@@ -53,7 +53,7 @@ export const personalInfo: PersonalInfo = {
   tagline: "Building systems at the intersection of data, intelligence, and scale.",
   email: "gouranshagarwal97@gmail.com",
   phone: "+91-6397748086",
-  location: "Agra, India",
+  location: "Noida, India",
   github: "https://github.com/gouranshagarwal",
   leetcode: "https://leetcode.com/u/m1z7m5J7iT",
 };
@@ -63,7 +63,7 @@ export const education: EducationItem[] = [
     degree: "B.Tech, Computer Science",
     institution: "GLA University, India",
     period: "Aug 2023 – Aug 2027",
-    cpi: "8.42 / 10",
+    cpi: "8.44 / 10",
     coursework: ["DSA", "DBMS", "Operating Systems", "Machine Learning", "GenAI"],
   },
 ];
@@ -74,32 +74,34 @@ export const experience: ExperienceItem[] = [
     company: "NITK Surathkal",
     period: "Jun 2025 – Sep 2025",
     bullets: [
-      "Built a real-time data pipeline to process and integrate multi-sensor inputs into an Autoware-based autonomous system.",
-      "Designed data preprocessing workflows including data transformation and validation for depth-camera inputs.",
-      "Worked with unstructured sensor data and designed preprocessing pipelines for reliable downstream processing.",
-      "Developed a Qt/C++ HMI and performed debugging, ensuring consistent data flow across system components.",
-    ],
+      "Architected a real-time multi-sensor ingestion pipeline for an Autoware-based autonomous vehicle framework, implementing precise message-synchronization and state-validation protocols to cleanly fuse heterogeneous streams with minimal latency.",
+
+      "Engineered a vision-driven perception sub-system that transformed raw depth-camera matrices into 3D Point Clouds (PCD) as a LiDAR alternative; achieved an almost 5x throughput boost (from 6-7 FPS to 30+ FPS) by implementing Numba njit compilation, spatial pixel downsampling, and frame-dropping mechanics.",
+
+      "Designed robust spatial preprocessing workflows to filter and downsample unstructured real-time telemetry, significantly minimizing downstream data corruption and increasing module reliability across the entire autonomous stack.",
+
+      "Developed an event-driven Qt/C++ Human-Machine Interface (HMI) to monitor live system telemetry and data flows, accelerating developer diagnostics and reducing system-validation cycles during active testing."    ],
   },
 ];
 
 export const projects: Project[] = [
   {
     id: 1,
-    title: "Exoplanet Detection & Characterization System",
+    title: "Autonomous RL Navigation Sandbox",
     year: "2026",
     status: "live",
-    liveUrl: "https://identify-real-exoplanets-95x4.vercel.app",
-    codeUrl: null,
+    liveUrl: null,
+    codeUrl: "https://github.com/GouranshAgarwal/Autonomous-Pathfinder-Robot-with-RL",
     description:
-      "ML pipeline for exoplanet detection and radius prediction using Random Forest classifier + regressor with SHAP interpretability.",
+      "End-to-end reinforcement-learning sandbox that streams real-time telemetry from PyTorch PPO inference to a React-Three-Fiber dashboard over low-latency WebSockets.",
     highlights: [
-      "93% accuracy, ROC-AUC 0.98",
-      "Regression RMSE: 0.98, MAE: 0.21",
-      "React + FastAPI deployment",
-      "SHAP interpretability",
+      "Custom Gymnasium environment optimized with NumPy vectorization for high-performance CPU simulation",
+      "PyTorch PPO inference loop streaming telemetry via WebSockets to React-Three-Fiber dashboard",
+      "Exponential proximity-scaling penalty to mitigate local minima near boundaries",
+      "Multi-stage Docker Compose pipeline with Nginx staging to reduce image weight and enable cross-platform deployment",
     ],
-    tags: ["Python", "React", "FastAPI", "Random Forest", "SHAP", "ML"],
-    color: "#6366f1",
+    tags: ["Python", "PyTorch", "Gymnasium", "Reinforcement Learning", "WebSockets", "React-Three-Fiber", "Docker Compose"],
+    color: "#ef4444",
   },
   {
     id: 2,
@@ -121,21 +123,21 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    title: "Video Streaming Platform",
-    year: "2026 – Ongoing",
-    status: "wip",
-    liveUrl: null,
-    codeUrl: "https://github.com/GouranshAgarwal/personal-youtube",
+    title: "Exoplanet Detection & Characterization System",
+    year: "2026",
+    status: "live",
+    liveUrl: "https://identify-real-exoplanets-95x4.vercel.app",
+    codeUrl: null,
     description:
-      "YouTube-inspired modular & scalable backend system with REST APIs for auth, video handling, and user interactions.",
+      "ML pipeline for exoplanet detection and radius prediction using Random Forest classifier + regressor with SHAP interpretability.",
     highlights: [
-      "Node.js + Express + MongoDB",
-      "REST APIs for auth & video",
-      "Scalable architecture",
-      "AWS cloud deployment ready",
+      "93% accuracy, ROC-AUC 0.98",
+      "Regression RMSE: 0.98, MAE: 0.21",
+      "React + FastAPI deployment",
+      "SHAP interpretability",
     ],
-    tags: ["Node.js", "Express", "MongoDB", "AWS", "REST API"],
-    color: "#f59e0b",
+    tags: ["Python", "React", "FastAPI", "Random Forest", "SHAP", "ML"],
+    color: "#6366f1",
   },
   {
     id: 4,

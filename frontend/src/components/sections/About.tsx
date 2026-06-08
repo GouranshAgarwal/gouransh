@@ -62,7 +62,7 @@ export default function About() {
         {/* Bio */}
         <div>
           <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "20px" }}>
-            I'm a third-year Computer Science student at GLA University, passionate about building scalable systems, training intelligent models, and shipping products that matter.
+            I'm a final-year Computer Science student at GLA University, passionate about building scalable systems, training intelligent models, and shipping products that matter.
           </p>
           <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "20px" }}>
             From detecting exoplanets with ML to building real-time autonomous data pipelines at NITK Surathkal, I gravitate toward problems that sit at the intersection of data, intelligence, and engineering.

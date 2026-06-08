@@ -193,7 +193,7 @@ export default function Hero() {
             className="mono"
             style={{ fontSize: "0.72rem", color: "var(--text-muted)", letterSpacing: "0.1em" }}
           >
-            Available for opportunities · Agra, India
+            Available for opportunities · Noida, India
           </span>
         </div>
       </div>
