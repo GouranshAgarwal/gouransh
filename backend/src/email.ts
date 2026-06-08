@@ -12,7 +12,6 @@ export const initializeEmailService = async () => {
   }
 
   try {
-    // Test API key by making a simple request
     const response = await fetch("https://api.brevo.com/v3/account", {
       method: "GET",
       headers: {
@@ -23,10 +22,11 @@ export const initializeEmailService = async () => {
     if (response.ok) {
       console.log("✓ Brevo email service initialized");
       return true;
-    } else {
-      console.error("✗ Brevo API key validation failed:", response.statusText);
-      return null;
     }
+
+    const errorText = await response.text();
+    console.error("✗ Brevo API key validation failed:", response.status, errorText);
+    return null;
   } catch (error) {
     console.error("✗ Brevo email service initialization failed:", error);
     return null;

@@ -1,6 +1,7 @@
 import { Router, type Request, type Response } from "express";
 import { z } from "zod";
 import { validateContactForm, isSuspicious } from "../validation.js";
+import { config } from "../config.js";
 import {
   sendEmail,
   getContactEmailTemplate,
@@ -31,7 +32,7 @@ router.post("/", async (req: Request, res: Response<ApiResponse>) => {
 
     // Send email to admin
     const adminEmailSent = await sendEmail({
-      to: process.env.EMAIL_FROM || "",
+      to: config.email.senderEmail,
       subject: `New Contact: ${validatedData.name}`,
       html: getContactEmailTemplate(
         validatedData.name,
